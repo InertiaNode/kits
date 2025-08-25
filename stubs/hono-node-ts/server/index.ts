@@ -12,7 +12,7 @@ app.use('*', serveStatic({ root: './public' }))
 
 app.get('/', async (c) => {
   return await Inertia.render('Index', {
-    title: 'Welcome to InertiaNode Hono'
+    title: 'Welcome to InertiaNode Hono on Node.js'
   }).toResponse(c.req.raw)
 })
 

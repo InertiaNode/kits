@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.16.0",
-    "@inertianode/core": "^1.0.0",
     "@inertianode/hono": "^1.0.0",
     "hono": "^4.8.5"
   },
