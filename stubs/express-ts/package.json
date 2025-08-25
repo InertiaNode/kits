@@ -8,6 +8,7 @@
         "dev:server:debug": "tsx watch --inspect=9229 server/index.ts",
         "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
         "dev:debug": "concurrently \"npm run dev:server:debug\" \"npm run dev:client\"",
+        "start": "node --experimental-transform-types server/index.ts",
         "lint": "tsc -b  && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
     },
     "dependencies": {
