@@ -1,0 +1,22 @@
+{
+  "name": "sample-hono-node",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "tsx watch server/index.ts",
+    "dev:server:debug": "tsx watch --inspect=9231 server/index.ts",
+    "start": "node --experimental-transform-types server/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.16.0",
+    "@inertianode/core": "^1.0.0",
+    "@inertianode/hono": "^1.0.0",
+    "hono": "^4.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "concurrently": "^8.2.2",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
+  }
+}

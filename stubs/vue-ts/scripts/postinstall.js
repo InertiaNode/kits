@@ -7,8 +7,8 @@ const basePath = process.argv[2];
 const serverIndexPath = path.join(basePath, "/server/index.ts");
 const serverIndexContent = fs.readFileSync(serverIndexPath, "utf8");
 
-const updatedServerIndexContent = serverIndexContent.replace(
-  "app.use(inertiaExpressAdapter());",
+let updatedServerIndexContent = serverIndexContent.replace(
+  "app.use(inertiaExpressAdapter())",
   `app.use(inertiaExpressAdapter({
     vite: {
       buildDirectory: "build",
@@ -17,7 +17,20 @@ const updatedServerIndexContent = serverIndexContent.replace(
       hotFile: "hot",
       entrypoints: ["client/App.ts"],
     },
-  }));`
+}))`
+);
+
+updatedServerIndexContent = updatedServerIndexContent.replace(
+  "app.use(inertiaHonoAdapter())",
+  `app.use(inertiaHonoAdapter({
+    vite: {
+      buildDirectory: "build",
+      manifestFilename: "manifest.json",
+      publicDirectory: "public",
+      hotFile: "hot",
+      entrypoints: ["client/App.ts"],
+    },
+}))`
 );
 
 fs.writeFileSync(serverIndexPath, updatedServerIndexContent);
