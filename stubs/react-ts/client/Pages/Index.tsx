@@ -7,7 +7,7 @@ export default function Index() {
             <h1 className="text-2xl font-bold">Hello, world!</h1>
             <p className="text-lg">Welcome to your new single-page application, built with:</p>
             <ul className="list-disc list-inside">
-                <li><a className="text-blue-500" target="_blank" href='https://hono.dev/'>Hono</a> and <a className="text-blue-500" target="_blank" href='https://hono.dev/'>TypeScript</a> for cross-platform server-side code</li>
+                <li><a className="text-blue-500" target="_blank" href='https://nodejs.org/'>Node.js</a> for server-side code</li>
                 <li><a className="text-blue-500" target="_blank" href='https://react.dev'>React</a> and <a className="text-blue-500" target="_blank" href='https://inertiajs.com'>InertiaJS</a> for client-side code</li>
                 <li><a className="text-blue-500" target="_blank" href='https://tailwindcss.com/'>TailwindCSS</a> for layout and styling</li>
             </ul>

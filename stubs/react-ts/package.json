@@ -1,4 +1,8 @@
 {
+    "scripts": {
+        "dev": "vite -c client/vite.config.ts",
+        "build": "vite build -c client/vite.config.ts"
+    },
     "dependencies": {
         "@inertiajs/core": "^2.0.14",
         "@inertiajs/react": "^2.0.14",
