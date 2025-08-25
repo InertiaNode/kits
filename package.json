@@ -16,6 +16,9 @@
     "devDependencies": {
         "@types/node": "^22.13.4"
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "author": "adrum",
     "license": "MIT"
 }
