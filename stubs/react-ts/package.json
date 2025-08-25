@@ -1,0 +1,15 @@
+{
+    "dependencies": {
+        "@inertiajs/core": "^2.0.14",
+        "@inertiajs/react": "^2.0.14",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
+        "tailwindcss": "^4.1.11"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^4.6.0",
+        "laravel-vite-plugin": "^2.0.0",
+        "@types/react": "^18.3.23",
+        "@types/react-dom": "^18.3.7"
+    }
+}
