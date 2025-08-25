@@ -38,16 +38,7 @@ export default [
     },
   },
   {
-    ignores: [
-      "vendor",
-      "node_modules",
-      "public",
-      "bootstrap/ssr",
-      "tailwind.config.js",
-      "resources/js/ziggy.js",
-      "resources/js/generated.d.ts",
-      "resources/js/enums.ts",
-    ],
+    ignores: ["node_modules", "public"],
   },
   prettier, // Turn off all rules that might conflict with Prettier
 ];
