@@ -23,7 +23,7 @@ defineProps<{
                 <li><strong>Server-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
                 <li><strong>Development server integration</strong>. In development mode, the development server from <code>Vite</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
             </ul>
-            <p class="text-lg">The <code>client</code> subdirectory is a standard Vue 3 application based on the <code>Vite</code> template.
+            <p class="text-lg">The <code>client</code> subdirectory is a standard Vue 3 application based on the <code>Vite</code> template.</p>
         </div>
     </Layout>
 </template>
