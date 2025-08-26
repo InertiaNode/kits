@@ -48,19 +48,10 @@
         so your client-side resources are dynamically built on demand and the page
         refreshes when you modify any file.
       </li>
-      <li>
-        <strong>Efficient production builds</strong>. In production mode,
-        development-time features are disabled, and your
-        <code>dotnet publish</code> configuration produces minified, efficiently
-        bundled JavaScript files.
-      </li>
     </ul>
     <p class="text-lg">
-      The <code>ClientApp</code> subdirectory is a standard Svelte 5 application
-      based on the <code>Vite</code> template. If you open a command prompt in
-      that directory, you can run <code>npm</code> commands such as
-      <code>npm test</code>
-      or <code>npm install</code>.
+      The <code>client</code> subdirectory is a standard Svelte 5 application
+      based on the <code>Vite</code> template.
     </p>
   </div>
 </Layout>
