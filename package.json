@@ -3,9 +3,6 @@
     "version": "0.0.5",
     "description": "InertiaNode Create",
     "type": "module",
-    "scripts": {
-        "publish": "npm publish --access public"
-    },
     "bin": {
         "inertianode-kit": "bin/create.js"
     },
