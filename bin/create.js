@@ -101,7 +101,9 @@ const execAsync = promisify(exec);
     filter: (src) => {
       const disAllowedDirs = ["node_modules", "dist", "build", "scripts"];
 
-      return !disAllowedDirs.some((dir) => src.includes(dir));
+      const check = src.split("@inertianode").pop();
+
+      return !disAllowedDirs.some((dir) => check?.includes(dir));
     },
   });
 
@@ -123,7 +125,9 @@ const execAsync = promisify(exec);
         "package.json",
       ];
 
-      return !disAllowed.some((dir) => src.includes(dir));
+      const check = src.split("@inertianode").pop();
+
+      return !disAllowed.some((dir) => check?.includes(dir));
     },
   });
 
