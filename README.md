@@ -7,7 +7,7 @@ This repository contains examples of how to use [InertiaNode](https://github.com
 To create a new project using InertiaNode, run the following command:
 
 ```bash
-npx @inertianode/create@latest
+npm init inertianode@latest
 ```
 
 This will create a new project with the name you provide.
