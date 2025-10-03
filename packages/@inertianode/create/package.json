@@ -1,0 +1,17 @@
+{
+    "name": "@inertianode/create",
+    "version": "1.0.0",
+    "description": "InertiaNode Create - Wrapper for create-inertianode",
+    "type": "module",
+    "scripts": {
+        "publish": "npm publish --access public"
+    },
+    "bin": {
+        "create": "bin/create.js"
+    },
+    "dependencies": {
+        "create-inertianode": "^0.0.9"
+    },
+    "author": "adrum",
+    "license": "MIT"
+}
