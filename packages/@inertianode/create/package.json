@@ -1,6 +1,6 @@
 {
     "name": "@inertianode/create",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "InertiaNode Create - Wrapper for create-inertianode",
     "type": "module",
     "scripts": {
@@ -10,7 +10,7 @@
         "create": "bin/create.js"
     },
     "dependencies": {
-        "create-inertianode": "^0.0.9"
+        "create-inertianode": "^0.0.6"
     },
     "author": "adrum",
     "license": "MIT"
