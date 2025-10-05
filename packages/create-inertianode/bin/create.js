@@ -7,6 +7,27 @@ import { promisify } from "util";
 
 const execAsync = promisify(exec);
 
+const packageName = "create-inertianode";
+
+const copyFiles = async (from, to, moreAllowedDirs = []) => {
+  await fs.cp(from, to, {
+    recursive: true,
+    filter: (src) => {
+      const disAllowedDirs = [
+        "node_modules",
+        "dist",
+        "build",
+        "scripts",
+        ...moreAllowedDirs,
+      ];
+
+      const check = src.split(packageName).pop();
+
+      return !disAllowedDirs.some((dir) => check?.includes(dir));
+    },
+  });
+};
+
 (async () => {
   // Get the name
   const { value: projectName } = await prompts({
@@ -25,7 +46,7 @@ const execAsync = promisify(exec);
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join("");
 
-  const { value: projectType } = await prompts({
+  const { value: serverType } = await prompts({
     type: "select",
     name: "value",
     message: "Choose a starter kit",
@@ -82,6 +103,8 @@ const execAsync = promisify(exec);
   // Create the project directory
   await fs.mkdir(projectPath);
 
+  const toProjectPath = await fs.realpath(projectPath);
+
   const isWindows = process.platform === "win32";
   let replacement = isWindows ? "file:///" : "file:";
 
@@ -91,45 +114,27 @@ const execAsync = promisify(exec);
   );
 
   // Copy the project files
-  const from = await fs.realpath(
-    path.join(scriptDir, `..`, `stubs`, `${projectType}`)
+  const fromBase = await fs.realpath(
+    path.join(scriptDir, `..`, `stubs`, `base`)
   );
-  const to = await fs.realpath(projectPath);
+
   // console.log("Copying project files from " + from + " to " + to);
-  await fs.cp(from, to, {
-    recursive: true,
-    filter: (src) => {
-      const disAllowedDirs = ["node_modules", "dist", "build", "scripts"];
+  await copyFiles(fromBase, toProjectPath);
 
-      const check = src.split("create-inertianode").pop();
-
-      return !disAllowedDirs.some((dir) => check?.includes(dir));
-    },
-  });
+  // Copy the project files
+  const fromServer = await fs.realpath(
+    path.join(scriptDir, `..`, `stubs`, `${serverType}`)
+  );
+  await copyFiles(fromServer, toProjectPath);
 
   // Copy the client project files (excluding package.json which we'll merge)
   const fromClient = await fs.realpath(
     path.join(scriptDir, `..`, `stubs`, `${clientType}`)
   );
-  const toClient = await fs.realpath(path.join(projectPath));
-  // console.log("Copying client files from " + fromClient + " to " + toClient);
-  await fs.cp(fromClient, toClient, {
-    recursive: true,
-    filter: (src) => {
-      const disAllowed = [
-        "node_modules",
-        "dist",
-        "build",
-        "scripts",
-        "package-lock.json",
-        "package.json",
-      ];
-
-      const check = src.split("create-inertianode").pop();
-
-      return !disAllowed.some((dir) => check?.includes(dir));
-    },
-  });
+  await copyFiles(fromClient, toProjectPath, [
+    "package-lock.json",
+    "package.json",
+  ]);
 
   // Merge package.json files
   // console.log("Merging package.json files...");
