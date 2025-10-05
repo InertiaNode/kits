@@ -56,6 +56,10 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
         value: "express-ts",
       },
       {
+        title: "Koa + TypeScript",
+        value: "koa-ts",
+      },
+      {
         title: "Hono + Cloudflare Pages + TypeScript",
         value: "hono-cf-pages-ts",
       },
@@ -189,6 +193,14 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
       };
     }
 
+    // Merge Overrides
+    if (clientPackageJson.overrides) {
+      serverPackageJson.overrides = {
+        ...(serverPackageJson.overrides || {}),
+        ...(clientPackageJson.overrides || {}),
+      };
+    }
+
     // Update the project name with the user's chosen name
     serverPackageJson.name = projectName;
 
@@ -219,7 +231,10 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
 
   // Check for and run optional postinstall scripts
   const postinstallScripts = [
-    { path: path.join(from, "scripts", "postinstall.js"), type: "server" },
+    {
+      path: path.join(fromServer, "scripts", "postinstall.js"),
+      type: "server",
+    },
     {
       path: path.join(fromClient, "scripts", "postinstall.js"),
       type: "client",
