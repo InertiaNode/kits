@@ -1,6 +1,6 @@
 {
     "name": "create-inertianode",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "InertiaNode Create",
     "type": "module",
     "bin": {
