@@ -6,7 +6,11 @@ import { serveStatic } from '@hono/node-server/serve-static'
 
 const app = new Hono()
 
-app.use(inertiaHonoAdapter())
+app.use(inertiaHonoAdapter({
+  vite: {
+    entrypoints: ['client/App.ts'],
+  }
+}))
 
 app.use('*', serveStatic({ root: './public' }))
 

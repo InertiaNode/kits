@@ -7,7 +7,11 @@ import cors from 'cors';
 const app = express();
 
 // Add Inertia middleware to enable res.Inertia.render()
-app.use(inertiaExpressAdapter());
+app.use(inertiaExpressAdapter({
+    vite: {
+        entrypoints: ['client/App.ts'],
+    }
+}));
 
 app.use(cors());
 app.use(express.json());

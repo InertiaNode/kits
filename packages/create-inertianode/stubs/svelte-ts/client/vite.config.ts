@@ -8,7 +8,7 @@ export default defineConfig({
     plugins: [
         tailwindcss(),
         laravel({
-            input: ["src/App.ts"],
+            input: ["App.ts"],
             refresh: true,
         }),
         svelte(),

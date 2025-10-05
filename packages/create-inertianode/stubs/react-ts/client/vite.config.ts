@@ -8,7 +8,7 @@ export default defineConfig({
     plugins: [
         tailwindcss(),
         laravel({
-            input: ["client/App.tsx"],
+            input: ["App.tsx"],
             refresh: true,
         }),
         react(),
