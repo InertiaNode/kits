@@ -52,20 +52,24 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
     message: "Choose a starter kit",
     choices: [
       {
-        title: "Express + TypeScript",
-        value: "express-ts",
-      },
-      {
-        title: "Koa + TypeScript",
-        value: "koa-ts",
-      },
-      {
         title: "Hono + Cloudflare Pages + TypeScript",
         value: "hono-cf-pages-ts",
       },
       {
         title: "Hono + Node + TypeScript",
         value: "hono-node-ts",
+      },
+      {
+        title: "Express + TypeScript",
+        value: "express-ts",
+      },
+      {
+        title: "NestJS + TypeScript",
+        value: "nestjs-ts",
+      },
+      {
+        title: "Koa + TypeScript",
+        value: "koa-ts",
       },
     ],
     initial: 0,
@@ -262,30 +266,36 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
     }
   }
 
-  // If React is selected, update server/index.ts to use App.tsx and enable reactRefresh
+  // If React is selected, update server config to use App.tsx and enable reactRefresh
   if (clientType === "react-ts") {
-    const serverIndexPath = path.join(projectPath, "server", "index.ts");
+    // Different file paths for different frameworks
+    const configPaths = {
+      "nestjs-ts": path.join(projectPath, "src", "app.module.ts"),
+      default: path.join(projectPath, "server", "index.ts"),
+    };
+
+    const serverConfigPath = configPaths[serverType] || configPaths.default;
+
     try {
-      let serverIndexContent = await fs.readFile(serverIndexPath, "utf-8");
+      let serverConfigContent = await fs.readFile(serverConfigPath, "utf-8");
 
       // Replace App.ts with App.tsx
-      serverIndexContent = serverIndexContent.replace(
+      serverConfigContent = serverConfigContent.replace(
         /entrypoints:\s*\['client\/App\.ts'\]/g,
         "entrypoints: ['client/App.tsx']"
       );
 
       // Enable reactRefresh for vite options
-      serverIndexContent = serverIndexContent.replace(
+      serverConfigContent = serverConfigContent.replace(
         /(vite:\s*\{[^}]*entrypoints:\s*\['client\/App\.tsx'\],?)/,
         `$1
-    react: {
-      reactRefresh: true
-    },`
+    reactRefresh: true,
+    `
       );
 
-      await fs.writeFile(serverIndexPath, serverIndexContent);
+      await fs.writeFile(serverConfigPath, serverConfigContent);
     } catch (error) {
-      console.warn("Could not update server/index.ts for React:", error.message);
+      console.warn("Could not update server config for React:", error.message);
     }
   }
 
