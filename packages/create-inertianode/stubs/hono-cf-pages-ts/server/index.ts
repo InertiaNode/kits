@@ -6,7 +6,11 @@ import { Inertia } from '@inertianode/core'
 
 const app = new Hono()
 
-app.use(inertiaHonoAdapter())
+app.use(inertiaHonoAdapter({
+  vite: {
+    entrypoints: ['client/App.ts'],
+  }
+}))
 
 app.get('/', async (c) => {
     return await Inertia.render('Index', {

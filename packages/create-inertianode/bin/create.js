@@ -262,5 +262,32 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
     }
   }
 
+  // If React is selected, update server/index.ts to use App.tsx and enable reactRefresh
+  if (clientType === "react-ts") {
+    const serverIndexPath = path.join(projectPath, "server", "index.ts");
+    try {
+      let serverIndexContent = await fs.readFile(serverIndexPath, "utf-8");
+
+      // Replace App.ts with App.tsx
+      serverIndexContent = serverIndexContent.replace(
+        /entrypoints:\s*\['client\/App\.ts'\]/g,
+        "entrypoints: ['client/App.tsx']"
+      );
+
+      // Enable reactRefresh for vite options
+      serverIndexContent = serverIndexContent.replace(
+        /(vite:\s*\{[^}]*entrypoints:\s*\['client\/App\.tsx'\],?)/,
+        `$1
+    react: {
+      reactRefresh: true
+    },`
+      );
+
+      await fs.writeFile(serverIndexPath, serverIndexContent);
+    } catch (error) {
+      console.warn("Could not update server/index.ts for React:", error.message);
+    }
+  }
+
   console.log(`Project created successfully at ${projectPath}`);
 })();
