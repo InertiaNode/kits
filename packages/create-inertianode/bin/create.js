@@ -41,11 +41,6 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
     process.exit(1);
   }
 
-  const nameSpace = projectName
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join("");
-
   const { value: serverType } = await prompts({
     type: "select",
     name: "value",

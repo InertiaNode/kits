@@ -9,7 +9,7 @@ This is a starter kit for building modern web applications with NestJS and Inert
 - 🎨 **React/Vue/Svelte** - Choose your favorite frontend framework
 - 📦 **TypeScript** - Full type safety across the stack
 - 🔥 **Hot Module Replacement** - Fast development with Vite
-- 🎯 **Decorators** - Use `@InertiaDecorator()` for clean controller code
+- 🎯 **Decorators** - Use `@Inert()` for clean controller code
 
 ## Getting Started
 
@@ -61,12 +61,12 @@ Using the decorator (recommended):
 
 ```typescript
 import { Controller, Get } from '@nestjs/common';
-import { InertiaDecorator, type InertiaInstance } from '@inertianode/nestjs';
+import { Inert, type InertiaInstance } from '@inertianode/nestjs';
 
 @Controller('users')
 export class UsersController {
   @Get()
-  async index(@InertiaDecorator() inertia: InertiaInstance) {
+  async index(@Inert() inertia: InertiaInstance) {
     await inertia.render('Users/Index', {
       users: await this.usersService.findAll()
     });
