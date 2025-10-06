@@ -1,25 +1,25 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, Get } from '@nestjs/common';
+import { InertiaDecorator, type Inertia } from '@inertianode/nestjs';
 
 @Controller()
 export class AppController {
   @Get()
-  async getIndex(@Req() req: Request, @Res() res: Response) {
-    await res.Inertia('Index', {
+  async getIndex(@InertiaDecorator() inertia: Inertia) {
+    await inertia('Index', {
       title: 'Welcome to InertiaNode NestJS'
     });
   }
 
   @Get('counter')
-  async getCounter(@Req() req: Request, @Res() res: Response) {
-    await res.Inertia('Counter', {
+  async getCounter(@InertiaDecorator() inertia: Inertia) {
+    await inertia('Counter', {
       title: 'Counter'
     });
   }
 
   @Get('weather-forecast')
-  async getWeatherForecast(@Req() req: Request, @Res() res: Response) {
-    await res.Inertia('Weather', {
+  async getWeatherForecast(@InertiaDecorator() inertia: Inertia) {
+    await inertia('Weather', {
       title: 'Weather Forecast',
       forecasts: [
         { date: '2025-01-01', temperatureF: 32, temperatureC: 0, summary: 'Freezing' },

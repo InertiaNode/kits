@@ -21,9 +21,9 @@ const copyFiles = async (from, to, moreAllowedDirs = []) => {
         ...moreAllowedDirs,
       ];
 
-      const check = src.split(packageName).pop();
+      const check = src.split(packageName).pop().split("/");
 
-      return !disAllowedDirs.some((dir) => check?.includes(dir));
+      return !check?.some((dir) => disAllowedDirs.includes(dir));
     },
   });
 };
